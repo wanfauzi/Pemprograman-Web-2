@@ -1,98 +1,102 @@
-#  Tugas Database Perpustakaan
+# Tugas Database Perpustakaan Lengkap
 
 ## Identitas
-
-* Nama: Muchammad Soufwan Fauzi
-* NIM: 60324081
-* Kelas: Pemweb II A
-
----
-
-## 1. Statistik Buku
-
-### 1. Total Buku
-
-![Total Buku](screenshot/1_total_buku.png)
-
-### 2. Total Nilai Inventaris
-
-![Total Inventaris](screenshot/2_total_inventaris.png)
-
-### 3. Rata-rata Harga Buku
-
-![Rata Harga](screenshot/3_rata_harga.png)
-
-### 4. Buku Termahal
-
-![Buku Termahal](screenshot/4_buku_termahal.png)
-
-### 5. Stok Terbanyak
-
-![Stok Terbanyak](screenshot/5_stok_terbanyak.png)
+- Nama: Muchammad Soufwan Fauzi
+- NIM: 60324081
+- Kelas: Pemweb A
 
 ---
 
-## 🔍 2. Filter & Pencarian
-
-### 6. Programming < 100.000
-
-![Filter1](screenshot/6_filter_programming.png)
-
-### 7. Judul PHP/MySQL
-
-![Filter2](screenshot/7_filter_php_mysql.png)
-
-### 8. Tahun 2024
-
-![Filter3](screenshot/8_tahun_2024.png)
-
-### 9. Stok 5–10
-
-![Filter4](screenshot/9_stok.png)
-
-### 10. Pengarang Budi Raharjo
-
-![Filter5](screenshot/10_pengarang.png)
+## Deskripsi
+Database ini merupakan sistem perpustakaan dengan fitur:
+- Relasi kategori, penerbit, dan buku
+- Penambahan tabel rak (bonus)
+- Implementasi soft delete
+- Stored procedure
+- Query JOIN untuk menampilkan data relasional
 
 ---
 
-## 📈 3. Grouping & Agregasi
+#  1. Struktur Tabel
+![kategori](screenshot2/1_create_database.png)
 
-### 11. Jumlah Buku per Kategori
+## 1.1 Tabel kategori_buku
+![kategori](screenshot2/2_create_tabel_kategori.png)
 
-![Group1](screenshot/11_group_kategori.png)
+## 1.2 Tabel penerbit
+![penerbit](screenshot2/3_create_tabel_penerbit.png)
 
-### 12. Rata-rata Harga per Kategori
+## 1.3 Tabel buku
+![buku](screenshot2/4_create_tabel_buku.png)
 
-![Group2](screenshot/12_avg.png)
-
-### 13. Nilai Inventaris Terbesar
-
-![Group3](screenshot/13_inventaris.png)
-
----
-
-## 🔧 4. Update Data
-
-### 14. Update Harga
-
-![Update1](screenshot/14_update_harga.png)
-
-### 15. Update Stok
-
-![Update2](screenshot/15_update_stok.png)
+## 1.4 Tabel rak (Bonus)
+![rak](screenshot2/17_create_tabel_rak.png)
 
 ---
 
-## 📑 5. Laporan Khusus
+#  2. Data dalam Tabel
 
-### 16. Restocking
+## 2.1 Data kategori_buku
+![data kategori](screenshot2/6_insert_kategori.png)
+![data kategori](screenshot2/7_hasil_insert_kategori.png)
 
-![Laporan1](screenshot/16_restock.png)
+## 2.2 Data penerbit
+![data kategori](screenshot2/8_insert_penerbit.png)
+![data kategori](screenshot2/9_hasil_insert_penerbit.png)
 
-### 17. Top 5 Termahal
+## 2.3 Data buku
+![data kategori](screenshot2/10_insert_buku.png)
+![data kategori](screenshot2/11_hasil_insert_buku.png)
+## 2.4 Data rak
+![data rak](screenshot2/19_data_rak.png)
 
-![Laporan2](screenshot/17_top5.png)
+---
+
+#  3. Hasil Query JOIN
+
+## 3.1 Buku + Kategori + Penerbit
+![join1](screenshot2/12_query_join_kategoribuku.png)
+![join2](screenshot2/13_hasil_query_join.png)
+
+---
+
+## 3.2 Jumlah Buku per Kategori
+![join2](screenshot2/14_buku_perkategori.png)
+
+---
+
+## 3.3 Jumlah Buku per Penerbit
+![join3](screenshot2/15_buku_perpenerbit.png)
+
+---
+
+## 3.4 Detail Lengkap Buku
+![join4](screenshot2/16_detail_buku.png)
+
+---
+
+#  4. Bonus Feature
+
+## 4.1 Relasi Buku dengan Rak
+![join rak](screenshot2/18_relasi_buku.png)
+![join1](screenshot2/20_hasil_relasi.png)
+
+---
+
+## 4.2 Soft Delete
+![soft delete](screenshot2/21_soft_delete.png)
+
+---
+
+## 4.3 Stored Procedure
+![procedure](screenshot2/22_procedure.png)
+![procedure](screenshot2/23_cek_procedure.png)
+
+---
+
+#  5. ERD (Entity Relationship Diagram)
+
+![ERD](screenshot2/24_erd_perpustakaan_lengkap.png)
 
 ---
 

@@ -27,12 +27,6 @@ Project ini merupakan implementasi tugas praktikum Laravel dengan fitur pengelol
 - Menampilkan detail kategori
 - Menampilkan daftar buku berdasarkan kategori
 - Pencarian kategori berdasarkan keyword
-
-## About
-
-- Informasi aplikasi
-- Informasi pengembang
-
 ---
 
 # 📸 Tampilan Aplikasi
@@ -87,8 +81,8 @@ Menampilkan hasil pencarian kategori berdasarkan keyword.
 
 # 🛠️ Teknologi yang Digunakan
 
-- PHP 8+
-- Laravel 12
+- PHP 8.3.31
+- Laravel 13
 - Bootstrap 5
 - Bootstrap Icons
 - Blade Template Engine
@@ -137,7 +131,6 @@ routes/
 | ------------- | -------------- |
 | /perpustakaan | Dashboard      |
 | /buku/{id}    | Detail Buku    |
-| /about        | Tentang Sistem |
 
 ## Anggota
 
@@ -219,11 +212,11 @@ Project ini dibuat untuk mempelajari:
 
 # 👨‍💻 Developer
 
-Nama: [Nama Mahasiswa]
+Nama: Muchammad Soufwan Fauzi
 
 Program Studi: Informatika
 
-Framework: Laravel 12
+Framework: Laravel 13
 
 ---
 

@@ -3,34 +3,476 @@
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BukuController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PerpustakaanController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Models\Buku;
 use App\Models\Anggota;
- 
+
+// PERTEMUAN 11
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// Resource route untuk Buku
 Route::resource('buku', BukuController::class);
-
-Route::get('buku/kategori/{kategori}', [BukuController::class ,'filterKategori'])
+ 
+// Custom route untuk filter kategori dan kategori
+ Route::get('kategori', [BukuController::class,'index'])
+    ->name('kategori.index');
+Route::get('/buku/kategori/{kategori}', [BukuController::class, 'filterKategori'])
     ->name('buku.kategori');
 
+
+// Resource route untuk Anggota (akan dibuat nanti)
 Route::resource('anggota', AnggotaController::class);
 
-Route::get('anggota/status/{status}', [AnggotaController::class, 'filterStatus'])
-    ->name('anggota.status');
+// Route untuk dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
-// Route::get('anggota', function () {
-//     return view('anggota.index');
-// })->name('anggota.index');
 
-// Route::get('anggota', function () {
-//     return view('anggota.show');
-// })->name('anggota.show');
- 
+// 
+//Route Menggunakan Controller
+// PERTEMUAN 9
+Route::get('/perpustakaan', [PerpustakaanController::class, 'index']);
+Route::get('/buku/{id}', [PerpustakaanController::class, 'show']);
+Route::get('/about', [PerpustakaanController::class, 'about']);
+
+//Route dan View untuk Anggota 
+//Menggunakan route di web.php bukan controller
+// Route::get('/anggota', function () {
+
+//     $anggota_list = [
+//         [
+//             'id' => 1,
+//             'kode' => 'AGT-001',
+//             'nama' => 'Budi Santoso',
+//             'email' => 'budi@email.com',
+//             'telepon' => '081234567890',
+//             'alamat' => 'Jakarta',
+//             'status' => 'Aktif'
+//         ],
+//         [
+//             'id' => 2,
+//             'kode' => 'AGT-002',
+//             'nama' => 'Siti Aminah',
+//             'email' => 'siti@email.com',
+//             'telepon' => '081234567891',
+//             'alamat' => 'Bandung',
+//             'status' => 'Aktif'
+//         ],
+//         [
+//             'id' => 3,
+//             'kode' => 'AGT-003',
+//             'nama' => 'Andi Wijaya',
+//             'email' => 'andi@email.com',
+//             'telepon' => '081234567892',
+//             'alamat' => 'Semarang',
+//             'status' => 'Nonaktif'
+//         ],
+//         [
+//             'id' => 4,
+//             'kode' => 'AGT-004',
+//             'nama' => 'Dewi Lestari',
+//             'email' => 'dewi@email.com',
+//             'telepon' => '081234567893',
+//             'alamat' => 'Yogyakarta',
+//             'status' => 'Aktif'
+//         ],
+//         [
+//             'id' => 5,
+//             'kode' => 'AGT-005',
+//             'nama' => 'Rudi Hartono',
+//             'email' => 'rudi@email.com',
+//             'telepon' => '081234567894',
+//             'alamat' => 'Surabaya',
+//             'status' => 'Aktif'
+//         ]
+//     ];
+
+//     return view('anggota.index', compact('anggota_list'));
+// });
+
+// //Route link detail anggota
+// Route::get('/anggota/{id}', function ($id) {
+
+//     $anggota_list = [
+//         1 => [
+//             'id' => 1,
+//             'kode' => 'AGT-001',
+//             'nama' => 'Budi Santoso',
+//             'email' => 'budi@email.com',
+//             'telepon' => '081234567890',
+//             'alamat' => 'Jakarta',
+//             'status' => 'Aktif'
+//         ],
+//         2 => [
+//             'id' => 2,
+//             'kode' => 'AGT-002',
+//             'nama' => 'Siti Aminah',
+//             'email' => 'siti@email.com',
+//             'telepon' => '082345678901',
+//             'alamat' => 'Bandung',
+//             'status' => 'Aktif'
+//         ],
+//         3 => [
+//             'id' => 3,
+//             'kode' => 'AGT-003',
+//             'nama' => 'Andi Saputra',
+//             'email' => 'andi@email.com',
+//             'telepon' => '083456789012',
+//             'alamat' => 'Surabaya',
+//             'status' => 'Nonaktif'
+//         ],
+//         4 => [
+//             'id' => 4,
+//             'kode' => 'AGT-004',
+//             'nama' => 'Dewi Lestari',
+//             'email' => 'dewi@email.com',
+//             'telepon' => '084567890123',
+//             'alamat' => 'Yogyakarta',
+//             'status' => 'Aktif'
+//         ],
+//         5 => [
+//             'id' => 5,
+//             'kode' => 'AGT-005',
+//             'nama' => 'Rina Wijaya',
+//             'email' => 'rina@email.com',
+//             'telepon' => '085678901234',
+//             'alamat' => 'Semarang',
+//             'status' => 'Aktif'
+//         ]
+//     ];
+
+//     // Cek data anggota
+//     if (!isset($anggota_list[$id])) {
+//         abort(404, 'Anggota tidak ditemukan');
+//     }
+
+//     $anggota = $anggota_list[$id];
+
+//     return view('anggota.show', compact('anggota'));
+// });
+
+
+// //Route kategori
+// Route::get('/kategori',
+//     [KategoriController::class,'index']);
+
+// Route::get('/kategori/search',
+//     [KategoriController::class,'search']);
+
+// Route::get('/kategori/{id}',
+//     [KategoriController::class,'show']);
+// // PERTEMUAN 11
+// Route::get('/test-accessor-scope', function () {
+
+//     $buku = Buku::all();
+//     $bukuTerbaru = Buku::terbaru()->get(); // atau bukuTerbaru() sesuai model Anda
+//     $stokMenipis = Buku::stokMenipis()->get();
+
+//     $anggota = Anggota::all();
+//     $anggotaBulanIni = Anggota::terdaftarBulanIni()->get();
+
+//     $html = '
+//     <!DOCTYPE html>
+//     <html lang="id">
+//     <head>
+//         <meta charset="UTF-8">
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//         <title>Testing Accessor & Scope</title>
+
+//         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+//         <style>
+//             body{
+//                 background:#f5f5f5;
+//             }
+
+//             .card{
+//                 border-radius:12px;
+//                 overflow:hidden;
+//                 box-shadow:0 2px 8px rgba(0,0,0,.1);
+//             }
+
+//             .card-header{
+//                 font-weight:bold;
+//                 font-size:18px;
+//             }
+
+//             table td,
+//             table th{
+//                 vertical-align:middle;
+//             }
+//         </style>
+//     </head>
+
+//     <body>
+
+//     <div class="container py-4">
+
+//         <h1 class="text-primary fw-bold mb-4">
+//             Testing Accessor & Scope
+//         </h1>
+//     ';
+
+//     // =====================================
+//     // ACCESSOR BUKU
+//     // =====================================
+
+//     $html .= '
+//     <div class="card mb-4">
+//         <div class="card-header bg-primary text-white">
+//             Accessor Buku
+//         </div>
+
+//         <div class="card-body">
+
+//             <table class="table table-bordered table-striped">
+
+//                 <thead class="table-primary">
+//                     <tr>
+//                         <th>Judul Buku</th>
+//                         <th>Stok</th>
+//                         <th>Status Stok</th>
+//                         <th>Tahun Terbit</th>
+//                         <th>Status Tahun</th>
+//                     </tr>
+//                 </thead>
+
+//                 <tbody>
+//     ';
+
+//     foreach ($buku as $item) {
+
+//         $html .= "
+//         <tr>
+//             <td>{$item->judul}</td>
+//             <td>{$item->stok}</td>
+//             <td>{$item->status_stok_badge}</td>
+//             <td>{$item->tahun_terbit}</td>
+//             <td>{$item->tahun_label}</td>
+//         </tr>
+//         ";
+//     }
+
+//     $html .= '
+//                 </tbody>
+
+//             </table>
+
+//         </div>
+//     </div>
+//     ';
+
+//     // =====================================
+//     // SCOPE BUKU TERBARU
+//     // =====================================
+
+//     $html .= '
+//     <div class="card mb-4">
+
+//         <div class="card-header bg-success text-white">
+//             Scope Buku Terbaru (Tahun >= 2024)
+//         </div>
+
+//         <div class="card-body">
+
+//             <table class="table table-bordered table-striped">
+
+//                 <thead class="table-success">
+//                     <tr>
+//                         <th>Judul</th>
+//                         <th>Tahun Terbit</th>
+//                         <th>Status Tahun</th>
+//                     </tr>
+//                 </thead>
+
+//                 <tbody>
+//     ';
+
+//     foreach ($bukuTerbaru as $item) {
+
+//         $html .= "
+//         <tr>
+//             <td>{$item->judul}</td>
+//             <td>{$item->tahun_terbit}</td>
+//             <td>{$item->tahun_label}</td>
+//         </tr>
+//         ";
+//     }
+
+//     $html .= '
+//                 </tbody>
+
+//             </table>
+
+//         </div>
+
+//     </div>
+//     ';
+
+//     // =====================================
+//     // SCOPE STOK MENIPIS
+//     // =====================================
+
+//     $html .= '
+//     <div class="card mb-4">
+
+//         <div class="card-header bg-warning">
+//             Scope Buku Stok Menipis (Stok < 5)
+//         </div>
+
+//         <div class="card-body">
+
+//             <table class="table table-bordered table-striped">
+
+//                 <thead class="table-warning">
+//                     <tr>
+//                         <th>Judul</th>
+//                         <th>Stok</th>
+//                         <th>Status Stok</th>
+//                     </tr>
+//                 </thead>
+
+//                 <tbody>
+//     ';
+
+//     foreach ($stokMenipis as $item) {
+
+//         $html .= "
+//         <tr>
+//             <td>{$item->judul}</td>
+//             <td>{$item->stok}</td>
+//             <td>{$item->status_stok_badge}</td>
+//         </tr>
+//         ";
+//     }
+
+//     $html .= '
+//                 </tbody>
+
+//             </table>
+
+//         </div>
+
+//     </div>
+//     ';
+
+//     // =====================================
+//     // ACCESSOR ANGGOTA
+//     // =====================================
+
+//     $html .= '
+//     <div class="card mb-4">
+
+//         <div class="card-header bg-info text-white">
+//             Accessor Anggota
+//         </div>
+
+//         <div class="card-body">
+
+//             <table class="table table-bordered table-striped">
+
+//                 <thead class="table-info">
+//                     <tr>
+//                         <th>Nama</th>
+//                         <th>Umur</th>
+//                         <th>Kategori Usia</th>
+//                         <th>Status</th>
+//                         <th>Status Badge</th>
+//                     </tr>
+//                 </thead>
+
+//                 <tbody>
+//     ';
+
+//     foreach ($anggota as $item) {
+
+//         $html .= "
+//         <tr>
+//             <td>{$item->nama}</td>
+//             <td>{$item->umur} Tahun</td>
+//             <td>{$item->kategori_usia}</td>
+//             <td>{$item->status}</td>
+//             <td>{$item->status_badge}</td>
+//         </tr>
+//         ";
+//     }
+
+//     $html .= '
+//                 </tbody>
+
+//             </table>
+
+//         </div>
+
+//     </div>
+//     ';
+
+//     // =====================================
+//     // ANGGOTA BULAN INI
+//     // =====================================
+
+//     $html .= '
+//     <div class="card mb-4">
+
+//         <div class="card-header bg-secondary text-white">
+//             Scope Anggota Terdaftar Bulan Ini
+//         </div>
+
+//         <div class="card-body">
+
+//             <table class="table table-bordered table-striped">
+
+//                 <thead class="table-secondary">
+//                     <tr>
+//                         <th>Nama</th>
+//                         <th>Status</th>
+//                         <th>Kategori Usia</th>
+//                         <th>Tanggal Daftar</th>
+//                     </tr>
+//                 </thead>
+
+//                 <tbody>
+//     ';
+
+//     foreach ($anggotaBulanIni as $item) {
+
+//         $tanggal = \Carbon\Carbon::parse($item->tanggal_daftar)
+//                     ->format('d M Y');
+
+//         $html .= "
+//         <tr>
+//             <td>{$item->nama}</td>
+//             <td>{$item->status}</td>
+//             <td>{$item->kategori_usia}</td>
+//             <td>{$tanggal}</td>
+//         </tr>
+//         ";
+//     }
+
+//     $html .= '
+//                 </tbody>
+
+//             </table>
+
+//         </div>
+
+//     </div>
+
+//     </div>
+
+//     </body>
+//     </html>
+//     ';
+
+//     return $html;
+// });
 
 // ========== TESTING BUKU ==========
- 
+// Pertemuan 10
 // List all buku
 // Route::get('/buku', function () {
 //     $bukus = Buku::all();
@@ -187,3 +629,4 @@ Route::get('anggota/status/{status}', [AnggotaController::class, 'filterStatus']
     
 //     return $html;
 // });
+
